@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS hibernate_sequence (
     next_val BIGINT NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS requests (
+CREATE TABLE IF NOT EXISTS request (
     id BIGINT PRIMARY KEY NOT NULL,
     cpf VARCHAR(11) NOT NULL,
     email VARCHAR(255),
