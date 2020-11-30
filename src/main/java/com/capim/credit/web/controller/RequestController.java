@@ -1,7 +1,6 @@
 package com.capim.credit.web.controller;
 
 import com.capim.credit.core.model.Request;
-import com.capim.credit.core.repository.RequestRepository;
 import com.capim.credit.core.service.RequestService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

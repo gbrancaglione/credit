@@ -13,3 +13,5 @@ CREATE TABLE IF NOT EXISTS requests (
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP
 );
+
+INSERT INTO hibernate_sequence VALUES (1);
