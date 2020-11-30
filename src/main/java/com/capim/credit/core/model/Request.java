@@ -38,7 +38,7 @@ public class Request {
     private String telephoneNumber;
 
     @Column(name = "value")
-    private BigDecimal value;
+    private Double value;
 
     @Column(name = "number_of_installments")
     private Integer numberOfInstallments;

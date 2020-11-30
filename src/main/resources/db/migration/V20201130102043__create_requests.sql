@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS requests (
     cpf VARCHAR(11) NOT NULL,
     email VARCHAR(255),
     telephone_number VARCHAR(15),
-    value DECIMAL(10, 2),
+    value DOUBLE,
     number_of_installments INTEGER,
 
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
