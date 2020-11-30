@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS hibernate_sequence (
-    next_val BIGINT
+    next_val BIGINT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS requests (

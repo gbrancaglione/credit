@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+
+    <meta charset="UTF-8"/>
+    <title>Spring Boot Thymeleaf Application</title>
+</head>
+<body>
+<h1>Welcome to Thymeleaf Spring Boot</h1>
+<h2>
+    <span>Hello, <th:block th:text="${name}">[name]</th:block></span>
+
+    <form th:action="@{/request}" th:object="${request}" method="post">
+        <div>
+        <label>CPF:</label>
+        <input type="text" th:field="*{cpf}"/>
+        </div>
+        <div>
+            <label>Email:</label>
+            <input type="text" th:field="*{email}"/>
+        </div>
+        <div>
+            <label>Telephone:</label>
+            <input type="text" th:field="*{telephoneNumber}"/>
+        </div>
+        <div>
+            <label>Value:</label>
+            <input type="number" th:field="*{value}" placeholder="0.00" step="0.01" />
+        </div>
+        <div>
+            <label>Installments:</label>
+            <input type="number" th:field="*{numberOfInstallments}"/>
+        </div>
+
+        <input type="submit" value="Submit"/>
+    </form>
+</h2>
+</body>
+</html>
