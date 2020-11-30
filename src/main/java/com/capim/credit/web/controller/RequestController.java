@@ -5,6 +5,7 @@ import com.capim.credit.core.repository.RequestRepository;
 import com.capim.credit.core.service.RequestService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,8 +23,6 @@ public class RequestController {
 
     @GetMapping({ "/", "/request" })
     public String index(Model model) {
-        model.addAttribute("name", "John");
-
         Request request = new Request();
         model.addAttribute("request", request);
 
@@ -31,7 +30,16 @@ public class RequestController {
     }
 
     @PostMapping({"/request" })
-    public void index(@ModelAttribute("request") @Valid Request request) {
+    public String createRequest(@ModelAttribute("request") @Valid Request request,
+                                BindingResult result) {
+
+        if (result.hasErrors()) {
+            System.out.println(result);
+            return "request";
+        }
+
         requestService.save(request);
+        System.out.println("Passed here!");
+        return "request";
     }
 }

@@ -7,18 +7,17 @@
     <title>Spring Boot Thymeleaf Application</title>
 </head>
 <body>
-<h1>Welcome to Thymeleaf Spring Boot</h1>
 <h2>
-    <span>Hello, <th:block th:text="${name}">[name]</th:block></span>
-
     <form th:action="@{/request}" th:object="${request}" method="post">
         <div>
-        <label>CPF:</label>
-        <input type="text" th:field="*{cpf}"/>
+            <label>CPF:</label>
+            <input type="text" th:field="*{cpf}" />
+            <span th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}"></span>
         </div>
         <div>
             <label>Email:</label>
             <input type="text" th:field="*{email}"/>
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
         </div>
         <div>
             <label>Telephone:</label>
@@ -27,10 +26,12 @@
         <div>
             <label>Value:</label>
             <input type="number" th:field="*{value}" placeholder="0.00" step="0.01" />
+            <span th:if="${#fields.hasErrors('value')}" th:errors="*{value}"></span>
         </div>
         <div>
             <label>Installments:</label>
             <input type="number" th:field="*{numberOfInstallments}"/>
+            <span th:if="${#fields.hasErrors('numberOfInstallments')}" th:errors="*{numberOfInstallments}"></span>
         </div>
 
         <input type="submit" value="Submit"/>
