@@ -2,7 +2,7 @@
 
 Small poc using : 
 - Java 11
-- Spring Boot
+- Spring Boot 2.4.0
 - Flyway (for migration control) 
-- MySQL
+- PostgreSQL 13
 - Thymeleaf 
