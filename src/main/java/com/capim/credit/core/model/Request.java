@@ -10,26 +10,19 @@ import org.springframework.format.annotation.NumberFormat;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 @Builder
 @Entity
-@Getter @Setter @NoArgsConstructor
+@Getter @Setter
+@NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "requests")
-public class Request {
+@Table(name = "request")
+public class Request extends GenericModel{
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Id
-    private Long id;
-
-    @CreationTimestamp
-    @Column(name = "created_at" )
-    private Timestamp createdAt;
-
-    @UpdateTimestamp
-    @Column(name = "updated_at" )
-    private Timestamp updatedAt;
+    @OneToMany(mappedBy = "request", cascade = CascadeType.ALL)
+    private List<Offer> offers;
 
     @CPF //CPF annotation will validate format & not null
     @Column(name = "cpf" )
