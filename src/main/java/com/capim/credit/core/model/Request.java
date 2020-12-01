@@ -33,8 +33,7 @@ public class Request {
     @Column(name = "updated_at" )
     private Timestamp updatedAt;
 
-    @CPF
-    @NotEmpty(message = "CPF is required")
+    @CPF //CPF annotation will validate format & not null
     @Column(name = "cpf" )
     private String cpf;
 
