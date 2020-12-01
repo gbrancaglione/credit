@@ -1,0 +1,50 @@
+
+/* FONTS*/
+@font-face {
+    font-family: Raleway;
+    src: url(Raleway-Medium.ttf);
+}
+
+@font-face {
+    font-family: Raleway;
+    src: url(Raleway-Italic.ttf);
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Raleway;
+    src: url(Raleway-Bold.ttf);
+    font-weight: bold;
+}
+
+/* GLOBAL */
+body {
+    font-family: Raleway, cursive;
+    -webkit-font-feature-settings: "lnum" 1;
+    -moz-font-feature-settings: "lnum" 1;
+    -o-font-feature-settings: "lnum" 1;
+    font-feature-settings: "lnum" 1;
+}
+
+
+h2 {
+    font-family: Raleway, cursive;
+    font-weight: bold;
+}
+
+/* INPUTS  */
+.styled-input {
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid darkgray;
+}
+
+.required::after {
+    content: " * ";
+    color: red;
+}
+
+input::placeholder {
+    font-family: Raleway, cursive;
+    font-style: italic;
+}

@@ -2,40 +2,67 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+    <link href="/style.css" rel="stylesheet">
 
     <meta charset="UTF-8"/>
     <title>Spring Boot Thymeleaf Application</title>
 </head>
 <body>
-<h2>
-    <form th:action="@{/request}" th:object="${request}" method="post">
-        <div>
-            <label>CPF:</label>
-            <input type="text" th:field="*{cpf}" />
-            <span th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}"></span>
+<div class="container mt-5 p-5 border border-success rounded">
+    <div class="text-center">
+        <h2>Credit Application</h2>
+    </div>
+    <form class="mx-auto" th:action="@{/request}" th:object="${request}" method="post">
+        <div class="form-group mb-5">
+            <div class="d-inline">
+                <label for="cpfInput" class="required">CPF&nbsp;</label>
+                <span class="badge badge-danger" th:errors="*{cpf}"></span>
+            </div>
+            <input class="form-control form-control-lg styled-input" th:classappend="${#fields.hasErrors('cpf')} ? is-invalid"
+                   th:field="*{cpf}" type="text" id="cpfInput" placeholder="Ex. 89559185004"/>
         </div>
-        <div>
-            <label>Email:</label>
-            <input type="text" th:field="*{email}"/>
-            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+        <div class="form-group mb-5">
+            <div class="d-inline">
+                <label for="emailInput">Email&nbsp;</label>
+                <span class="badge badge-danger" th:errors="*{email}"></span>
+            </div>
+            <input class="form-control form-control-lg styled-input" th:classappend="${#fields.hasErrors('email')} ? is-invalid"
+                   th:field="*{email}" type="text" id="emailInput" placeholder="Ex. example@email.com">
         </div>
-        <div>
-            <label>Telephone:</label>
-            <input type="text" th:field="*{telephoneNumber}"/>
+        <div class="form-group mb-5">
+            <div class="d-inline">
+                <label for="telephoneInput">Telephone&nbsp;</label>
+                <span class="badge badge-danger" th:errors="*{telephoneNumber}"></span>
+            </div>
+            <input class="form-control form-control-lg styled-input" th:classappend="${#fields.hasErrors('telephoneNumber')} ? is-invalid"
+                   th:field="*{telephoneNumber}" type="text" id="telephoneInput" placeholder="Ex. (81)34122093">
         </div>
-        <div>
-            <label>Value:</label>
-            <input type="number" th:field="*{value}" placeholder="0.00" step="0.01" />
-            <span th:if="${#fields.hasErrors('value')}" th:errors="*{value}"></span>
-        </div>
-        <div>
-            <label>Installments:</label>
-            <input type="number" th:field="*{numberOfInstallments}"/>
-            <span th:if="${#fields.hasErrors('numberOfInstallments')}" th:errors="*{numberOfInstallments}"></span>
-        </div>
+        <div class="form-group mb-5">
+            <div class="d-inline">
+                <label for="valueInput" class="required">Value&nbsp;</label>
+                <span class="badge badge-danger" th:errors="*{value}"></span>
+            </div>
+            <input class="form-control form-control-lg styled-input" th:classappend="${#fields.hasErrors('value')} ? is-invalid"
+                   th:field="*{value}" type="number" id="valueInput" placeholder="0.00">
 
-        <input type="submit" value="Submit"/>
+        </div>
+        <div class="form-group mb-5">
+            <div class="d-inline">
+                <label for="periodInput" class="required"> Installments (between 2 &amp; 6 months)&nbsp;</label>
+                <span class="badge badge-danger" th:errors="*{numberOfInstallments}"></span>
+            </div>
+            <select class="form-control form-control-lg" th:classappend="${#fields.hasErrors('numberOfInstallments')} ? is-invalid" id="periodInput" th:field="*{numberOfInstallments}">
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+        </div>
+        <div class="text-center">
+            <input type="submit" class="mx-auto mt-5 btn btn-outline-dark rounded" value="Submit">
+        </div>
     </form>
-</h2>
+</div>
 </body>
 </html>

@@ -5,12 +5,10 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.*;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -26,8 +24,7 @@ public class Request extends GenericModel{
     @OneToMany(mappedBy = "request", cascade = CascadeType.ALL)
     private List<Offer> offers;
 
-    @CPF
-    @NotEmpty(message = "CPF is required")
+    @CPF //CPF annotation will validate format & not null
     @Column(name = "cpf" )
     private String cpf;
 
@@ -35,6 +32,7 @@ public class Request extends GenericModel{
     @Column(name = "email")
     private String email;
 
+    @Pattern(regexp = "^[0-9]+$")
     @Column(name = "telephone_number")
     private String telephoneNumber;
 
