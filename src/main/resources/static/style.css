@@ -20,7 +20,7 @@
 /* GLOBAL */
 body {
     font-family: Raleway, cursive;
-    font-size: x-large;
+    font-size: 1rem;
     -webkit-font-feature-settings: "lnum" 1;
     -moz-font-feature-settings: "lnum" 1;
     -o-font-feature-settings: "lnum" 1;
@@ -28,14 +28,14 @@ body {
 }
 
 
-h2 {
+.form-title {
     font-family: Raleway, cursive;
     font-weight: bold;
 }
 
 /* INPUTS  */
 #submitButton {
-    font-size: x-large;
+    font-size: 1rem;
 }
 
 .styled-input {
@@ -58,9 +58,11 @@ input::placeholder {
     font-style: italic;
 }
 
-/* CONTAINER */
-.container-lg {
-    background-color: #f4fdf0;
+
+/* LOGO */
+.logo-lg {
+    min-width: 150px;
+    max-width: 250px;
 }
 
 /* SUCCESS ANIMATION */
