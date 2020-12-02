@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RequestService {
+public class RequestService extends GenericService<Request> {
 
     private final RequestRepository requestRepository;
 
@@ -17,6 +17,7 @@ public class RequestService {
         this.requestRepository = requestRepository;
     }
 
+    // TO be changed because we don't know where to put logger for now
     public void save(Request request) {
         requestRepository.save(request);
         logger.info(" A new Request was saved (id): {}", request.getId());
