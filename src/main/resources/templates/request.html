@@ -8,70 +8,82 @@
     <title>Capim Credit</title>
 </head>
 <body>
-<div class="container-lg mt-5 p-5 border border-success rounded">
-    <div class="text-center">
-        <h2>PARCELE SUA COMPRA</h2>
+    <div class="container-fluid pt-2 pb-5">
+        <nav class="navbar">
+            <div class="col-12 d-flex justify-content-center">
+                <a href="/">
+                    <img class="logo-lg" th:src="@{/capim.png}">
+                </a>
+            </div>
+        </nav>
+        <div class="row justify-content-md-center">
+            <div class="col-md-8 box box-form my-5">
+                <h2 class="text-center">PARCELE SUA COMPRA</h2>
+                <hr class="my-5">
+
+                <form class="mx-auto" th:action="@{/request}" th:object="${request}" method="post">
+                    <div class="form-group mb-5">
+                        <div class="d-inline">
+                            <label for="cpfInput" class="required">CPF&nbsp;</label>
+                            <span class="badge badge-danger" th:errors="*{cpf}"></span>
+                        </div>
+                        <input class="form-control form-control-lg styled-input"
+                               th:classappend="${#fields.hasErrors('cpf')} ? is-invalid"
+                               th:field="*{cpf}" type="text" id="cpfInput" placeholder="Ex. 89559185004"/>
+                    </div>
+
+                    <div class="form-group mb-5">
+                        <div class="d-inline">
+                            <label for="emailInput">Email&nbsp;</label>
+                            <span class="badge badge-danger" th:errors="*{email}"></span>
+                        </div>
+                        <input class="form-control form-control-lg styled-input"
+                               th:classappend="${#fields.hasErrors('email')} ? is-invalid"
+                               th:field="*{email}" type="text" id="emailInput" placeholder="Ex. example@email.com">
+                    </div>
+
+                    <div class="form-group mb-5">
+                        <div class="d-inline">
+                            <label for="telephoneInput" th:text="#{telephone.number.with.area.code}">&nbsp;</label>
+                            <span class="badge badge-danger" th:errors="*{telephoneNumber}"></span>
+                        </div>
+                        <input class="form-control form-control-lg styled-input"
+                               th:classappend="${#fields.hasErrors('telephoneNumber')} ? is-invalid"
+                               th:field="*{telephoneNumber}" type="text" id="telephoneInput" placeholder="Ex. (81)34122093">
+                    </div>
+
+                    <div class="form-group mb-5">
+                        <div class="d-inline">
+                            <label for="valueInput" class="required" th:text="#{total.requested.value}">&nbsp;</label>
+                            <span class="badge badge-danger" th:errors="*{value}"></span>
+                        </div>
+                        <input class="form-control form-control-lg styled-input"
+                               th:classappend="${#fields.hasErrors('value')} ? is-invalid"
+                               th:field="*{value}" type="number" id="valueInput" placeholder="0.00">
+
+                    </div>
+                    <div class="form-group mb-5">
+                        <div class="d-inline">
+                            <label for="periodInput" class="required" th:text="#{number.installments.payment}"></label>
+                            <span class="badge badge-danger" th:errors="*{numberOfInstallments}"></span>
+                        </div>
+                        <select class="form-control form-control-lg"
+                                th:classappend="${#fields.hasErrors('numberOfInstallments')} ? is-invalid" id="periodInput"
+                                th:field="*{numberOfInstallments}">
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" id="submitButton" class="mx-auto mt-5 btn btn-outline-dark rounded" value="Submit">
+                    </div>
+                </form>
+
+            </div>
+        </div>
     </div>
-    <form class="mx-auto" th:action="@{/request}" th:object="${request}" method="post">
-        <div class="form-group mb-5">
-            <div class="d-inline">
-                <label for="cpfInput" class="required">CPF&nbsp;</label>
-                <span class="badge badge-danger" th:errors="*{cpf}"></span>
-            </div>
-            <input class="form-control form-control-lg styled-input"
-                   th:classappend="${#fields.hasErrors('cpf')} ? is-invalid"
-                   th:field="*{cpf}" type="text" id="cpfInput" placeholder="Ex. 89559185004"/>
-        </div>
-
-        <div class="form-group mb-5">
-            <div class="d-inline">
-                <label for="emailInput">Email&nbsp;</label>
-                <span class="badge badge-danger" th:errors="*{email}"></span>
-            </div>
-            <input class="form-control form-control-lg styled-input"
-                   th:classappend="${#fields.hasErrors('email')} ? is-invalid"
-                   th:field="*{email}" type="text" id="emailInput" placeholder="Ex. example@email.com">
-        </div>
-
-        <div class="form-group mb-5">
-            <div class="d-inline">
-                <label for="telephoneInput" th:text="#{telephone.number.with.area.code}">&nbsp;</label>
-                <span class="badge badge-danger" th:errors="*{telephoneNumber}"></span>
-            </div>
-            <input class="form-control form-control-lg styled-input"
-                   th:classappend="${#fields.hasErrors('telephoneNumber')} ? is-invalid"
-                   th:field="*{telephoneNumber}" type="text" id="telephoneInput" placeholder="Ex. (81)34122093">
-        </div>
-
-        <div class="form-group mb-5">
-            <div class="d-inline">
-                <label for="valueInput" class="required" th:text="#{total.requested.value}">&nbsp;</label>
-                <span class="badge badge-danger" th:errors="*{value}"></span>
-            </div>
-            <input class="form-control form-control-lg styled-input"
-                   th:classappend="${#fields.hasErrors('value')} ? is-invalid"
-                   th:field="*{value}" type="number" id="valueInput" placeholder="0.00">
-
-        </div>
-        <div class="form-group mb-5">
-            <div class="d-inline">
-                <label for="periodInput" class="required" th:text="#{number.installments.payment}"></label>
-                <span class="badge badge-danger" th:errors="*{numberOfInstallments}"></span>
-            </div>
-            <select class="form-control form-control-lg"
-                    th:classappend="${#fields.hasErrors('numberOfInstallments')} ? is-invalid" id="periodInput"
-                    th:field="*{numberOfInstallments}">
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-            </select>
-        </div>
-        <div class="text-center">
-            <input type="submit" id="submitButton" class="mx-auto mt-5 btn btn-outline-dark rounded" value="Submit">
-        </div>
-    </form>
-</div>
 </body>
 </html>

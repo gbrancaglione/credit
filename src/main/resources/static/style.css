@@ -20,7 +20,7 @@
 /* GLOBAL */
 body {
     font-family: Raleway, cursive;
-    font-size: x-large;
+    font-size: 1rem;
     -webkit-font-feature-settings: "lnum" 1;
     -moz-font-feature-settings: "lnum" 1;
     -o-font-feature-settings: "lnum" 1;
@@ -61,6 +61,24 @@ input::placeholder {
 /* CONTAINER */
 .container-lg {
     background-color: #f4fdf0;
+}
+
+/* LOGO */
+.logo-lg {
+    min-width: 200px;
+    max-width: 306px;
+}
+
+/* FORM */
+.box {
+    border-radius: 0.3rem;
+    padding: 2rem;
+}
+
+.box-form {
+    padding: 3rem 5rem;
+    background-color: #fff;
+    border: 1px solid #dadada;
 }
 
 /* SUCCESS ANIMATION */
