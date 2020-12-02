@@ -5,10 +5,11 @@
     <link href="/style.css" rel="stylesheet">
 
     <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>Capim Credit</title>
 </head>
 <body>
-    <div class="container-fluid pt-2 pb-5">
+    <div class="container-lg pt-2 pb-5">
         <nav class="navbar">
             <div class="col-12 d-flex justify-content-center">
                 <a href="/">
@@ -17,9 +18,9 @@
             </div>
         </nav>
         <div class="row justify-content-md-center">
-            <div class="col-md-8 box box-form my-5">
-                <h2 class="text-center">PARCELE SUA COMPRA</h2>
-                <hr class="my-5">
+            <div class="col-md-8 box box-form my-4">
+                <h4 class="text-center form-title">PARCELE SUA COMPRA</h4>
+                <hr class="my-3">
 
                 <form class="mx-auto" th:action="@{/request}" th:object="${request}" method="post">
                     <div class="form-group mb-5">
@@ -78,7 +79,7 @@
                         </select>
                     </div>
                     <div class="text-center">
-                        <input type="submit" id="submitButton" class="mx-auto mt-5 btn btn-outline-dark rounded" value="Submit">
+                        <input type="submit" id="submitButton" class="mx-auto mt-3 btn btn-outline-dark" value="Submit">
                     </div>
                 </form>
 

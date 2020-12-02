@@ -28,7 +28,7 @@ body {
 }
 
 
-h2 {
+.form-title {
     font-family: Raleway, cursive;
     font-weight: bold;
 }
@@ -58,15 +58,11 @@ input::placeholder {
     font-style: italic;
 }
 
-/* CONTAINER */
-.container-lg {
-    background-color: #f4fdf0;
-}
 
 /* LOGO */
 .logo-lg {
-    min-width: 200px;
-    max-width: 306px;
+    min-width: 150px;
+    max-width: 250px;
 }
 
 /* FORM */
@@ -76,7 +72,7 @@ input::placeholder {
 }
 
 .box-form {
-    padding: 3rem 5rem;
+    padding: 1rem 2rem;
     background-color: #fff;
     border: 1px solid #dadada;
 }
