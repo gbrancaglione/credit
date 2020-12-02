@@ -5,17 +5,26 @@
     <link href="/style.css" rel="stylesheet">
 
     <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>Capim Credit</title>
 </head>
 <body>
-    <div class="container-lg mt-5 p-5 border border-success rounded">
-        <div class="text-center">
-            <h2>Credit Application</h2>
-        </div>
-        <div class="text-center pt-2">
-            Your request was taken into account ! Thank you
-            <br/>
-            <img class="success-check mt-5" th:src="@{/check-circle-regular.svg}" alt="Success"/>
+    <div class="container-lg pt-2 pb-5">
+        <nav class="navbar">
+            <div class="col-12 d-flex justify-content-center">
+                <a href="/">
+                    <img class="logo-lg" th:src="@{/capim.png}">
+                </a>
+            </div>
+        </nav>
+        <div class="row justify-content-md-center">
+            <div class="col-md-8 my-4">
+                <div class="text-center pt-2">
+                    Your request was taken into account ! Thank you
+                    <br/>
+                    <img class="success-check mt-3" th:src="@{/check-circle-regular.svg}" alt="Success"/>
+                </div>
+            </div>
         </div>
     </div>
 </body>
