@@ -39,7 +39,6 @@ public class RequestController {
         }
 
         requestService.save(request);
-        System.out.println("Passed here!");
-        return "request";
+        return "request_validation";
     }
 }
