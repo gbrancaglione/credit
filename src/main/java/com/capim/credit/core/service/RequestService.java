@@ -6,8 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-public class RequestService extends GenericService<Request> {
+public class RequestService {
 
     private final RequestRepository requestRepository;
 
@@ -21,5 +23,9 @@ public class RequestService extends GenericService<Request> {
     public void save(Request request) {
         requestRepository.save(request);
         logger.info(" A new Request was saved (id): {}", request.getId());
+    }
+
+    public List<Request> findAllSortedByCreationDate() {
+        return requestRepository.findAllOrderByCreatedAt();
     }
 }
