@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class RequestController {
@@ -29,6 +31,14 @@ public class RequestController {
         model.addAttribute("request", request);
 
         return "request";
+    }
+
+    @GetMapping({ "/request_list" })
+    public String listRequests(Model model) {
+        List<Request> requests = requestService.findAllSortedByCreationDate();
+        model.addAttribute("requests", requests);
+
+        return "request_list";
     }
 
     @PostMapping({"/request" })

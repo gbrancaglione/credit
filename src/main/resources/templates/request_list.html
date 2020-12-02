@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+    <link href="/style.css" rel="stylesheet">
+
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Capim Credit</title>
+</head>
+<body>
+    <div class="container">
+        <th:block th:each="request : ${requests}">
+            <div class="d-inline">
+                <p th:text="${request.getCreatedAt()}">...</p>
+                <p th:text="${request.getEmail()}">...</p>
+                <p th:text="${request.getValue()}">...</p>
+            </div>
+        </th:block>
+    </div>
+
+</body>
+</html>
