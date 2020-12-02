@@ -24,15 +24,15 @@ public class Request extends GenericModel{
     @OneToMany(mappedBy = "request", cascade = CascadeType.ALL)
     private List<Offer> offers;
 
-    @CPF //CPF annotation will validate format & not null
+    @CPF(message = "{cpf.not_valid}") //CPF annotation will validate format & not null
     @Column(name = "cpf" )
     private String cpf;
 
-    @Email
+    @Email(message = "{email.not_valid}")
     @Column(name = "email")
     private String email;
 
-    @Pattern(regexp = "^[0-9]+$")
+    @Pattern(regexp = "^[0-9]+$", message = "{telephone.not_valid}")
     @Column(name = "telephone_number")
     private String telephoneNumber;
 
