@@ -20,6 +20,7 @@
 /* GLOBAL */
 body {
     font-family: Raleway, cursive;
+    font-size: x-large;
     -webkit-font-feature-settings: "lnum" 1;
     -moz-font-feature-settings: "lnum" 1;
     -o-font-feature-settings: "lnum" 1;
@@ -33,10 +34,18 @@ h2 {
 }
 
 /* INPUTS  */
+#submitButton {
+    font-size: x-large;
+}
+
 .styled-input {
     border-radius: 0;
     border: 0;
     border-bottom: 1px solid darkgray;
+}
+
+.form-control {
+    background: transparent;
 }
 
 .required::after {
@@ -47,4 +56,34 @@ h2 {
 input::placeholder {
     font-family: Raleway, cursive;
     font-style: italic;
+}
+
+/* CONTAINER */
+.container-lg {
+    background-color: #f4fdf0;
+}
+
+/* SUCCESS ANIMATION */
+.success-check {
+    width: 10%;
+    animation-duration: 2s;
+    animation-name: success;
+    filter: invert(45%) sepia(85%) saturate(792%) hue-rotate(87deg) brightness(96%) contrast(102%);
+}
+
+@keyframes success {
+    from {
+        width: 1%;
+        transform: rotate(25deg);
+    }
+    25%,75% {
+        transform: rotate(-25deg);
+    }
+    50% {
+        transform: rotate(25deg);
+    }
+    to {
+        width: 10%;
+        transform: rotate(0deg);
+    }
 }
