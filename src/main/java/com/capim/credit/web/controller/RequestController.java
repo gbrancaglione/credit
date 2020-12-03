@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -50,7 +49,8 @@ public class RequestController {
             return "request";
         }
 
-        requestService.save(request);
+        Request createdRequest = requestService.save(request);
+        logger.info(" A new request was saved (id): {}", createdRequest.getId());
         return "request_validation";
     }
 }

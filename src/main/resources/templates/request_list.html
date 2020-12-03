@@ -9,12 +9,27 @@
     <title>Capim Credit</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <th:block th:each="request : ${requests}">
-            <div class="d-inline">
-                <p th:text="${request.getCreatedAt()}">...</p>
-                <p th:text="${request.getEmail()}">...</p>
-                <p th:text="${request.getValue()}">...</p>
+            <div class="container">
+                <div class="row border border-primary">
+                    <h2 class="col">
+                        <label th:text="${request.getId()}"></label>
+                    </h2>
+                </div>
+                <div class="row border border-secondary">
+                    <p class="col" th:text="${request.getCreatedAt()}">...</p>
+                    <p class="col"> By </p>
+                    <p class="col" th:text="${request.getCpf()}">...</p>
+                </div>
+                <div class="row border border-success">
+                    <p class="col" th:text="${request.getEmail()}"></p>
+                    <p class="col" th:text="${request.getTelephoneNumber()}"></p>
+                </div>
+                <div class="row border border-danger">
+                    <p class="col" th:text="${request.getValue()}">...</p>
+                    <p class="col" th:text="${request.getNumberOfInstallments()}"></p>
+                </div>
             </div>
         </th:block>
     </div>
