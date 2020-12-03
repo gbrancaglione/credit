@@ -6,7 +6,7 @@
 
     <meta charset="UTF-8"/>
     <meta content="width=device-width, initial-scale=1" name="viewport">
-    <title>Capim Credit</title>
+    <title th:text="#{OUR.NAME}"></title>
 </head>
 <body>
     <div class="container-lg pt-2 pb-5">
@@ -19,7 +19,7 @@
         </nav>
         <div class="row justify-content-md-center">
             <div class="col-md-8 border border-light rounded p-3 my-4">
-                <h4 class="text-center form-title">PARCELE SUA COMPRA</h4>
+                <h4 class="text-center form-title" th:text="#{pay.multiple.times}"></h4>
                 <hr class="my-3">
 
                 <form class="mx-auto" th:action="@{/request}" th:object="${request}" method="post">
