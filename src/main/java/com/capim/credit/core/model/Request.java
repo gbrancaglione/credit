@@ -12,7 +12,6 @@ import java.util.List;
 @Data
 @Builder
 @Entity
-@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "request")
@@ -29,7 +28,7 @@ public class Request extends GenericModel{
     @Column(name = "email")
     private String email;
 
-    @Pattern(regexp = "^[0-9]+$")
+    @Pattern(regexp = "^[0-9()+]*$")
     @Column(name = "telephone_number")
     private String telephoneNumber;
 

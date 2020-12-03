@@ -7,7 +7,6 @@ import javax.validation.constraints.Min;
 @Data
 @Builder
 @Entity
-@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "offer")
