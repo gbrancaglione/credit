@@ -14,6 +14,10 @@ public class Offer extends GenericModel{
     @ManyToOne
     private Request request;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private Status status;
+
     @Min(0)
     @Column(name = "total_value")
     private Double totalValue;
