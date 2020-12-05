@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Data
@@ -35,7 +36,7 @@ public class Request extends GenericModel{
 
     @Min(0)
     @Column(name = "value")
-    private Double value;
+    private BigDecimal value;
 
     @Min(2)
     @Max(6)

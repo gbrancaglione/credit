@@ -4,8 +4,9 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Data
 @Builder
@@ -24,7 +25,7 @@ public class Offer extends GenericModel{
     @Min(0)
     @NotNull
     @Column(name = "total_value")
-    private Double totalValue;
+    private BigDecimal totalValue;
 
     @Min(2)
     @Max(6)
@@ -34,9 +35,11 @@ public class Offer extends GenericModel{
 
     @Min(0)
     @Column(name = "installment_value")
-    private Double installmentValue;
+    private BigDecimal installmentValue;
 
     public void calculateInstallmentValue() {
-        this.installmentValue = this.totalValue/this.numberOfInstallments;
+        this.installmentValue = this.totalValue.divide(
+                BigDecimal.valueOf(this.numberOfInstallments), 2, RoundingMode.HALF_UP
+        );
     }
 }
