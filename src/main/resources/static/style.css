@@ -27,6 +27,9 @@ body {
     font-feature-settings: "lnum" 1;
 }
 
+.lightgreen {
+    background-color: #daf7e4 !important;
+}
 
 .form-title {
     font-family: Raleway, cursive;
