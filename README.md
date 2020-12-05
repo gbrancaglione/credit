@@ -13,3 +13,4 @@ Small poc using :
 - Default values should be made (exp: Offer status should be PENDING on creation): programmatically (exp: in service)/ in DB (exp: DEFAULT ...)/ by Hibernate annotation ?
 - Refactoring the traductions files for clean organization 
 - Refactoring to use "Decorator" pattern instead of flooding thymeleaf templates
+- Modify Creation Date & Update Date in Models in order to take into account Brazil Time Zone
