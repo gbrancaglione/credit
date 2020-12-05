@@ -5,10 +5,13 @@ import com.capim.credit.core.model.Status;
 import com.capim.credit.core.service.OfferService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -33,20 +36,26 @@ public class OfferController {
     }
 
     @PostMapping("/offer/{id}/accept")
-    public String acceptOffer(Model model, @PathVariable Long id) {
+    public String acceptOffer(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         Offer offer = offerService.findById(id).orElse(null);
+        if (offer == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No offer for this CPF");
+
         offer.setStatus(Status.ACCEPTED);
         offerService.save(offer);
 
-        return "redirect:/offers/" + offer.getRequest().getCpf();
+        redirectAttributes.addAttribute("cpf", offer.getRequest().getCpf());
+        return "redirect:/offers/{cpf}";
     }
     @PostMapping("/offer/{id}/refuse")
-    public String refuseOffer(@PathVariable Long id) {
+    public String refuseOffer(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         Offer offer = offerService.findById(id).orElse(null);
+        if (offer == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No offer for this CPF");
+
         offer.setStatus(Status.REFUSED);
         offerService.save(offer);
 
-        return "redirect:/offers/" + offer.getRequest().getCpf();
+        redirectAttributes.addAttribute("cpf", offer.getRequest().getCpf());
+        return "redirect:/offers/{cpf}";
     }
 
     @PostMapping({"/offer"})
