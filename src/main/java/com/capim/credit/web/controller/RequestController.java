@@ -1,5 +1,6 @@
 package com.capim.credit.web.controller;
 
+import com.capim.credit.core.model.Offer;
 import com.capim.credit.core.model.Request;
 import com.capim.credit.core.service.RequestService;
 import org.slf4j.Logger;
@@ -35,6 +36,8 @@ public class RequestController {
     @GetMapping({ "/request_list" })
     public String listRequests(Model model) {
         List<Request> requests = requestService.findAllSortedByCreationDate();
+        Offer offer = new Offer();
+        model.addAttribute("offer", offer);
         model.addAttribute("requests", requests);
 
         return "request_list";
@@ -45,7 +48,7 @@ public class RequestController {
                                 BindingResult result) {
 
         if (result.hasErrors()) {
-            logger.info(" A request attempt has failed (errors): {}", result);
+            logger.warn(" A request attempt has failed (errors): {}", result);
             return "request";
         }
 

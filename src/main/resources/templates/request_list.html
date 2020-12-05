@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+    <script src="https://kit.fontawesome.com/6806dc6d59.js" crossorigin="anonymous"></script>
     <link href="/style.css" rel="stylesheet">
 
     <meta charset="UTF-8"/>
@@ -11,25 +12,93 @@
 <body>
     <div class="container-fluid">
         <th:block th:each="request : ${requests}">
-            <div class="container">
-                <div class="row border border-primary">
-                    <h2 class="col">
-                        <label th:text="${request.getId()}"></label>
-                    </h2>
-                    <p class="col" th:text="${request.getFullName()}"></p>
-                </div>
-                <div class="row border border-secondary">
-                    <p class="col" th:text="${request.getCreatedAt()}">...</p>
-                    <p class="col"> By </p>
-                    <p class="col" th:text="${request.getCpf()}">...</p>
-                </div>
-                <div class="row border border-success">
-                    <p class="col" th:text="${request.getEmail()}"></p>
-                    <p class="col" th:text="${request.getTelephoneNumber()}"></p>
-                </div>
-                <div class="row border border-danger">
-                    <p class="col" th:text="${request.getValue()}">...</p>
-                    <p class="col" th:text="${request.getNumberOfInstallments()}"></p>
+            <div class="container p-2 mt-3 bg-info rounded">
+                <h2 th:text="${request.getId()+' : '+request.getFullName()}" class="text-white"></h2>
+                <div class="container-fluid bg-light rounded">
+                    <div class="row p-1 mx-1 mb-2 border-bottom border-secondary">
+                        Request
+                    </div>
+                    <div class="row p-1 mx-1 ">
+                        <p class="col px-2">
+                            <i class="far fa-clock"></i>
+                            <text th:text="${request.getCreatedAt()}">...</text>
+                        </p>
+                    </div>
+                    <div class="row p-1 mx-1 ">
+                        <p class="col px-2">
+                            <i class="far fa-id-card"></i>
+                            <text th:text="${request.getFullName()+' ('+request.getCpf()+')'}">...</text>
+                        </p>
+                        <p class="col px-2">
+                            <i class="far fa-envelope"></i>
+                            <text th:text="${request.getEmail()}"></text>
+                        </p>
+                        <p class="col px-2">
+                            <i class="fas fa-phone-alt"></i>
+                            <text th:text="${request.getTelephoneNumber()}"></text>
+                        </p>
+                    </div>
+                    <div class="row p-1 mx-1 ">
+                        <p class="col px-2">
+                            <i class="fas fa-hand-holding-usd"></i>
+                            <text th:text="${request.getValue() + ' R$'}"></text>
+                        </p>
+                        <p class="col px-2">
+                            <i class="far fa-calendar-alt"></i>
+                            <text th:text="${request.getNumberOfInstallments()}"></text>
+                        </p>
+                        <p class="col px-2">
+                            <i class="fas fa-cube"></i>
+                            <text th:text="${request.getFinancedItem()}">...</text>
+                        </p>
+                    </div>
+                    <div class="row p-1 mx-1 border-bottom border-secondary">
+                        Offers
+                    </div>
+                    <th:block th:each="offer : ${request.offers}">
+                        <div class="row p-1 m-1">
+                            <p class="col px-2">
+                                <i class="fas fa-hand-holding-usd"></i>
+                                <text th:text="${offer.getTotalValue() + ' R$'}"></text>
+                            </p>
+                            <p class="col px-2">
+                                <i class="far fa-calendar-alt"></i>
+                                <text th:text="${offer.getNumberOfInstallments()}"></text>
+                            </p>
+                            <p class="col px-2">
+                                <i class="far fa-calendar-times"></i>
+                                <text th:text="${offer.getInstallmentValue() + ' R$'}"></text>
+                            </p>
+                            <p class="col px-2 text-center">
+                                <span class="badge "
+                                      th:classappend="${(offer.status.name() == 'PENDING' ? 'badge-warning': '') +
+                                                    (offer.status.name() == 'ACCEPTED' ? 'badge-success': '')+
+                                                    (offer.status.name() == 'REFUSED' ? 'badge-danger': '')}"
+                                      th:text="${offer.getStatus()}">
+                            </p>
+                        </div>
+                    </th:block>
+                    <form class="row p-1 mx-1 mb-0 mt-1 form-inline form-group text-center rounded border border-secondary" th:action="@{'/offer/{id}'(id=${request.getId()})}" th:object="${offer}" method="post">
+                        <p class="col px-2 mb-0">
+                            <i class="fas fa-hand-holding-usd"></i>
+                            <input th:id="${'offer-value-'+request.getId()}" class="form-control" th:field="*{totalValue}" type="number">
+                        </p>
+                        <p class="col px-2 mb-0">
+                            <i class="far fa-calendar-alt"></i>
+                            <select class="form-control"
+                                    th:id="${'offer-calendar-'+request.getId()}"
+                                    th:field="*{numberOfInstallments}">
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+                        </p>
+                        <p class="col px-2 mb-0">
+                            <input type="submit" th:id="${'offer-submit-'+request.getId()}" class="mx-auto btn btn-outline-success" value="Add Offer">
+                        </p>
+                    </form>
                 </div>
             </div>
         </th:block>
