@@ -1,7 +1,6 @@
 package com.capim.credit.core.service;
 
 import com.capim.credit.core.model.Offer;
-import com.capim.credit.core.model.Request;
 import com.capim.credit.core.repository.OfferRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +17,8 @@ public class OfferService extends GenericService<Offer>{
         this.offerRepository = offerRepository;
     }
 
-    public List<Offer> findAllByRequestId(Long request_id) {
-        return offerRepository.findAllByRequestId(request_id);
+    public List<Offer> findAllByRequestId(Long requestId) {
+        return offerRepository.findAllByRequestId(requestId);
     }
 
     public List<Offer> findAllByRequestCpfOrderByCreatedAt(String cpf) {
