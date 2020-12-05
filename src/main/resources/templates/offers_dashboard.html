@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:rel="stylesheet" th:href="@{../webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+    <link href="/style.css" rel="stylesheet">
+
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Capim Credit</title>
+</head>
+<body>
+    <div class="container-lg pt-2 pb-5">
+        <nav class="navbar">
+            <div class="col-12 d-flex justify-content-center">
+                <a href="/">
+                    <img class="logo-lg" th:src="@{/capim.png}">
+                </a>
+            </div>
+        </nav>
+        <div class="row">
+            <th:block th:each="offer : ${offers}">
+                <div class="col-md-4 p-3">
+                    <div class="card"
+                         th:classappend="${(offer.status.name() == 'PENDING' ? 'border-warning': '') +
+                                           (offer.status.name() == 'ACCEPTED' ? 'border-success': '')+
+                                           (offer.status.name() == 'REFUSED' ? 'border-danger': '')}">
+                        <div class="card-body">
+                            <span class="badge badge-success mb-2"
+                                  th:classappend="${(offer.status.name() == 'PENDING' ? 'badge-warning': '') +
+                                                    (offer.status.name() == 'ACCEPTED' ? 'badge-success': '')+
+                                                    (offer.status.name() == 'REFUSED' ? 'badge-danger': '')}"
+                                  th:text="#{'status.'+${offer.getStatus()}}">
+                            </span>
+                            <h5 class="card-title font-weight-bold"
+                                th:text="#{value.total} + ' : ' + ${offer.getTotalValue()} + ' R$'">
+                            </h5>
+                            <h6 class="card-text mt-2 text-muted"
+                                th:text="#{installments.number} + ' : ' + ${offer.getNumberOfInstallments()}">
+                            </h6>
+                            <div class="card-header text-center">
+                                <h6 th:text="#{installment.value}" ></h6>
+                                <p class="card-text font-weight-bold"
+                                   th:text="${offer.getInstallmentValue()} + ' R$'">
+                                </p>
+                            </div>
+                            <div class="row text-center mt-3" th:if="${offer.status.name() == 'PENDING'}">
+                                <div class="col-6">
+                                    <form th:action="@{'/offer/{id}/accept'(id=${offer.id})}" th:method="post" >
+                                        <button type="submit" class="btn btn-success"
+                                                th:text="#{accept}">
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="col-6">
+                                    <form th:action="@{'/offer/{id}/refuse'(id=${offer.id})}" th:method="post" >
+                                        <button type="submit" class="btn btn-danger"
+                                                th:text="#{refuse}">
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</body>
+</html>

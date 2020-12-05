@@ -19,14 +19,15 @@ public class OfferService extends GenericService<Offer>{
         this.offerRepository = offerRepository;
     }
 
-    public List<Offer> findAllByRequestId(Long request_id) {
-        return offerRepository.findAllByRequestId(request_id);
-    }
-
     public Offer createNewOfferThenSave(Offer offer, Request request) {
         offer.setRequest(request);
         offer.setStatus(Status.PENDING);
         offer.calculateInstallmentValue();
         return offerRepository.save(offer);
     }
+
+    public List<Offer> findAllByRequestCpfOrderByCreatedAt(String cpf) {
+        return offerRepository.findAllByRequestCpfOrderByCreatedAt(cpf);
+    }
+
 }
