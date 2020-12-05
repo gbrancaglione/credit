@@ -32,7 +32,7 @@
                                   th:text="#{'status.'+${offer.getStatus()}}">
                             </span>
                             <h5 class="card-title font-weight-bold"
-                                th:text="#{value.total} + ' : ' + ${#numbers.formatDecimal(offer.getTotalValue(), 2, 'POINT', 2, 'COMMA')} + ' R$'">
+                                th:text="'R$ ' + #{value.total} + ' : ' + ${#numbers.formatDecimal(offer.getTotalValue(), 2, 'POINT', 2, 'COMMA')}">
                             </h5>
                             <h6 class="card-text mt-2 text-muted"
                                 th:text="#{installments.number} + ' : ' + ${offer.getNumberOfInstallments()}">
@@ -40,7 +40,7 @@
                             <div class="card-header text-center">
                                 <h6 th:text="#{installment.value}" ></h6>
                                 <p class="card-text font-weight-bold"
-                                   th:text="${#numbers.formatDecimal(offer.getInstallmentValue(), 2, 'POINT', 2, 'COMMA')} + ' R$'">
+                                   th:text="'R$ ' + ${#numbers.formatDecimal(offer.getInstallmentValue(), 2, 'POINT', 2, 'COMMA')}">
                                 </p>
                             </div>
                             <div class="row text-center mt-3" th:if="${offer.status.name() == 'PENDING'}">
