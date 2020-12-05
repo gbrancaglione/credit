@@ -5,6 +5,20 @@
     <link href="/style.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/6806dc6d59.js" crossorigin="anonymous"></script>
 
+    <script>
+        function callDeleteRequest(offerId) {
+            const xhr = new XMLHttpRequest();
+            xhr.open("DELETE", "../offer/"+offerId, true);
+            xhr.onreadystatechange= function () {
+                if (xhr.readyState===xhr.DONE && xhr.status===200) {
+                    const offerRow = document.getElementById(offerId);
+                    offerRow.style.display = "none";
+                }
+            };
+            xhr.send();
+        }
+    </script>
+
     <meta charset="UTF-8"/>
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>Capim Credit</title>
@@ -14,7 +28,6 @@
         <th:block th:each="request : ${requests}">
             <div class="container p-2 mt-3 rounded lightgreen">
                 <h2 th:text="${request.getId()+' : '+request.getFullName()}" class="text-dark"></h2>
-                <div class="p-0 m-0 d-none" th:id="${'display-'+request.getId()}">
                 <div class="container-fluid bg-light mt-2 shadow rounded">
                     <div class="row p-1 mx-1 mb-2 border-bottom border-secondary">
                         Request
@@ -59,25 +72,30 @@
                         Offers
                     </div>
                     <th:block th:each="offer : ${request.offers}">
-                        <div class="row p-1 m-1">
-                            <p class="col px-2">
+                        <div class="row p-1 m-1" th:id="${offer.getId()}">
+                            <p class="col px-2 mb-1">
                                 <i class="fas fa-hand-holding-usd"></i>
                                 <text th:text="${offer.getTotalValue() + ' R$'}"></text>
                             </p>
-                            <p class="col px-2">
+                            <p class="col px-2 mb-1">
                                 <i class="far fa-calendar-alt"></i>
                                 <text th:text="${offer.getNumberOfInstallments()}"></text>
                             </p>
-                            <p class="col px-2">
+                            <p class="col px-2 mb-1">
                                 <i class="far fa-calendar-times"></i>
                                 <text th:text="${offer.getInstallmentValue() + ' R$'}"></text>
                             </p>
-                            <p class="col px-2 text-center">
+                            <p class="col px-2 mb-1 text-center">
                                 <span class="badge "
                                       th:classappend="${(offer.status.name() == 'PENDING' ? 'badge-warning': '') +
                                                     (offer.status.name() == 'ACCEPTED' ? 'badge-success': '')+
                                                     (offer.status.name() == 'REFUSED' ? 'badge-danger': '')}"
-                                      th:text="${offer.getStatus()}">
+                                      th:text="${offer.getStatus()}"></span>
+                            </p>
+                            <p class="col px-2 mb-1 text-center">
+                                <button class="btn btn-outline-danger btn-sm" th:onclick="'callDeleteRequest(\'' + ${offer.getId()} + '\');'">
+                                    Delete
+                                </button>
                             </p>
                         </div>
                     </th:block>
@@ -109,7 +127,6 @@
                     </form>
                 </div>
                 </div>
-            </div>
         </th:block>
     </div>
 
