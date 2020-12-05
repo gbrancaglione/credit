@@ -36,6 +36,25 @@ body {
     font-weight: bold;
 }
 
+/* REQUEST LIST */
+.emptyoffers:after {
+    font-family: "Font Awesome 5 Free";
+    content: "  \f06a";
+    font-weight: 900;
+    vertical-align: middle;
+    font-size: 0.6em;
+    color: darkorange;
+}
+i.ad:hover {
+    cursor: pointer;
+}
+
+div.request-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 /* INPUTS  */
 #submitButton {
     font-size: 1rem;

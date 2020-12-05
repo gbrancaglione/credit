@@ -4,6 +4,12 @@
     <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
     <link href="/style.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/6806dc6d59.js" crossorigin="anonymous"></script>
+    <script>
+        function display(id) {
+            let el = document.getElementById('display-'+id).style;
+            el.display==="none" ? el.display="inline": el.display="none";
+        }
+    </script>
 
     <meta charset="UTF-8"/>
     <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -13,8 +19,12 @@
     <div class="container-fluid">
         <th:block th:each="request : ${requests}">
             <div class="container p-2 mt-3 rounded lightgreen">
-                <h2 th:text="${request.getId()+' : '+request.getFullName()}" class="text-dark"></h2>
-                <div class="p-0 m-0 d-none" th:id="${'display-'+request.getId()}">
+                <div class="request-container">
+                    <h2 th:text="${request.getId()+' : '+request.getFullName()}" class="text-dark"
+                        th:classappend="${#lists.isEmpty(request.offers)} ? emptyoffers "></h2>
+                    <i class="fas fa-chevron-down fa-2x ad" th:onclick="'display(\''+${request.getId()}+'\');'"></i>
+                </div>
+                <div class="p-0 m-0"  style="display: none;" th:id="${'display-'+request.getId()}">
                 <div class="container-fluid bg-light mt-2 shadow rounded">
                     <div class="row p-1 mx-1 mb-2 border-bottom border-secondary">
                         Request
@@ -78,6 +88,9 @@
                                                     (offer.status.name() == 'ACCEPTED' ? 'badge-success': '')+
                                                     (offer.status.name() == 'REFUSED' ? 'badge-danger': '')}"
                                       th:text="${offer.getStatus()}">
+                            </p>
+                            <p class="col px-2 text-center">
+
                             </p>
                         </div>
                     </th:block>
