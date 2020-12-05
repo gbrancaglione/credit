@@ -21,4 +21,10 @@ public class OfferService extends GenericService<Offer>{
     public List<Offer> findAllByRequestId(Long request_id) {
         return offerRepository.findAllByRequestId(request_id);
     }
+
+    public List<Offer> findAllByRequestCpfOrderByCreatedAt(String cpf) {
+        return offerRepository.findAllByRequestCpfOrderByCreatedAt(cpf);
+    }
+
+
 }
