@@ -33,7 +33,7 @@ public class Offer extends GenericModel{
     @Column(name = "number_of_installments")
     private Integer numberOfInstallments;
 
-    @Min(1)
+    @Min(0)
     @Column(name = "installment_value")
     private BigDecimal installmentValue;
 

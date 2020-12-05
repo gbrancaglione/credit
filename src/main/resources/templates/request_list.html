@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
-    <script src="https://kit.fontawesome.com/6806dc6d59.js" crossorigin="anonymous"></script>
     <link href="/style.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/6806dc6d59.js" crossorigin="anonymous"></script>
 
     <meta charset="UTF-8"/>
     <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -12,13 +12,14 @@
 <body>
     <div class="container-fluid">
         <th:block th:each="request : ${requests}">
-            <div class="container p-2 mt-3 bg-info rounded">
-                <h2 th:text="${request.getId()+' : '+request.getFullName()}" class="text-white"></h2>
-                <div class="container-fluid bg-light rounded">
+            <div class="container p-2 mt-3 rounded lightgreen">
+                <h2 th:text="${request.getId()+' : '+request.getFullName()}" class="text-dark"></h2>
+                <div class="p-0 m-0 d-none" th:id="${'display-'+request.getId()}">
+                <div class="container-fluid bg-light mt-2 shadow rounded">
                     <div class="row p-1 mx-1 mb-2 border-bottom border-secondary">
                         Request
                     </div>
-                    <div class="row p-1 mx-1 ">
+                    <div class="row p-1 mx-1">
                         <p class="col px-2">
                             <i class="far fa-clock"></i>
                             <text th:text="${request.getCreatedAt()}">...</text>
@@ -52,7 +53,9 @@
                             <text th:text="${request.getFinancedItem()}">...</text>
                         </p>
                     </div>
-                    <div class="row p-1 mx-1 border-bottom border-secondary">
+                </div>
+                <div class="container-fluid bg-light mt-2 shadow rounded">
+                    <div class="row p-1 mx-1 mb-2 border-bottom border-secondary">
                         Offers
                     </div>
                     <th:block th:each="offer : ${request.offers}">
@@ -78,8 +81,12 @@
                             </p>
                         </div>
                     </th:block>
-                    <form class="row p-1 mx-1 mb-0 mt-1 form-inline form-group text-center rounded border border-secondary"
-                          th:action="@{'/offer/{id}'(id=${request.getId()})}" th:object="${offer}" method="post">
+                </div>
+                <div class="container-fluid bg-light mt-2 shadow rounded">
+                    <div class="row p-1 mx-1 mb-2 border-bottom border-secondary">
+                        Offer proposal
+                    </div>
+                    <form class="row p-1 mx-1 mb-0 form-inline form-group text-center " th:action="@{'/offer/{id}'(id=${request.getId()})}" th:object="${offer}" method="post">
                         <p class="col px-2 mb-0">
                             <i class="fas fa-hand-holding-usd"></i>
                             <input th:id="${'offer-value-'+request.getId()}" class="form-control"
@@ -102,6 +109,7 @@
                                    class="mx-auto btn btn-outline-success" value="Add Offer">
                         </p>
                     </form>
+                </div>
                 </div>
             </div>
         </th:block>
