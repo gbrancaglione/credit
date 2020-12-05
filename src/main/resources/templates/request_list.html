@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+    <link href="/style.css" rel="stylesheet">
+
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Capim Credit</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <th:block th:each="request : ${requests}">
+            <div class="container">
+                <div class="row border border-primary">
+                    <h2 class="col">
+                        <label th:text="${request.getId()}"></label>
+                    </h2>
+                    <p class="col" th:text="${request.getFullName()}"></p>
+                </div>
+                <div class="row border border-secondary">
+                    <p class="col" th:text="${request.getCreatedAt()}">...</p>
+                    <p class="col"> By </p>
+                    <p class="col" th:text="${request.getCpf()}">...</p>
+                </div>
+                <div class="row border border-success">
+                    <p class="col" th:text="${request.getEmail()}"></p>
+                    <p class="col" th:text="${request.getTelephoneNumber()}"></p>
+                </div>
+                <div class="row border border-danger">
+                    <p class="col" th:text="${request.getValue()}">...</p>
+                    <p class="col" th:text="${request.getNumberOfInstallments()}"></p>
+                </div>
+            </div>
+        </th:block>
+    </div>
+
+</body>
+</html>

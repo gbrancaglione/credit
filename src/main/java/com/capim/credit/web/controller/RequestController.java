@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class RequestController {
@@ -31,6 +32,14 @@ public class RequestController {
         return "request";
     }
 
+    @GetMapping({ "/request_list" })
+    public String listRequests(Model model) {
+        List<Request> requests = requestService.findAllSortedByCreationDate();
+        model.addAttribute("requests", requests);
+
+        return "request_list";
+    }
+
     @PostMapping({"/request" })
     public String createRequest(@ModelAttribute("request") @Valid Request request,
                                 BindingResult result) {
@@ -40,7 +49,8 @@ public class RequestController {
             return "request";
         }
 
-        requestService.save(request);
+        Request createdRequest = requestService.save(request);
+        logger.info(" A new request was saved (id): {}", createdRequest.getId());
         return "request_validation";
     }
 }
