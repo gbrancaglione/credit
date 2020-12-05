@@ -41,7 +41,7 @@
                     <div class="row p-1 mx-1 ">
                         <p class="col px-2">
                             <i class="fas fa-hand-holding-usd"></i>
-                            <text th:text="${request.getValue() + ' R$'}"></text>
+                            <text th:text="${#numbers.formatDecimal(request.getValue(), 2, 'POINT', 2, 'COMMA')} + ' R$'"></text>
                         </p>
                         <p class="col px-2">
                             <i class="far fa-calendar-alt"></i>
@@ -59,7 +59,7 @@
                         <div class="row p-1 m-1">
                             <p class="col px-2">
                                 <i class="fas fa-hand-holding-usd"></i>
-                                <text th:text="${offer.getTotalValue() + ' R$'}"></text>
+                                <text th:text="${#numbers.formatDecimal(offer.getTotalValue(), 2, 'POINT', 2, 'COMMA')} + ' R$'"></text>
                             </p>
                             <p class="col px-2">
                                 <i class="far fa-calendar-alt"></i>
@@ -67,7 +67,7 @@
                             </p>
                             <p class="col px-2">
                                 <i class="far fa-calendar-times"></i>
-                                <text th:text="${offer.getInstallmentValue() + ' R$'}"></text>
+                                <text th:text="${#numbers.formatDecimal(offer.getInstallmentValue(), 2, 'POINT', 2, 'COMMA')} + ' R$'"></text>
                             </p>
                             <p class="col px-2 text-center">
                                 <span class="badge "
@@ -78,10 +78,12 @@
                             </p>
                         </div>
                     </th:block>
-                    <form class="row p-1 mx-1 mb-0 mt-1 form-inline form-group text-center rounded border border-secondary" th:action="@{'/offer/{id}'(id=${request.getId()})}" th:object="${offer}" method="post">
+                    <form class="row p-1 mx-1 mb-0 mt-1 form-inline form-group text-center rounded border border-secondary"
+                          th:action="@{'/offer/{id}'(id=${request.getId()})}" th:object="${offer}" method="post">
                         <p class="col px-2 mb-0">
                             <i class="fas fa-hand-holding-usd"></i>
-                            <input th:id="${'offer-value-'+request.getId()}" class="form-control" th:field="*{totalValue}" type="number">
+                            <input th:id="${'offer-value-'+request.getId()}" class="form-control"
+                                   th:field="*{totalValue}" type="number" step="0.01">
                         </p>
                         <p class="col px-2 mb-0">
                             <i class="far fa-calendar-alt"></i>
@@ -96,7 +98,8 @@
                             </select>
                         </p>
                         <p class="col px-2 mb-0">
-                            <input type="submit" th:id="${'offer-submit-'+request.getId()}" class="mx-auto btn btn-outline-success" value="Add Offer">
+                            <input type="submit" th:id="${'offer-submit-'+request.getId()}"
+                                   class="mx-auto btn btn-outline-success" value="Add Offer">
                         </p>
                     </form>
                 </div>
