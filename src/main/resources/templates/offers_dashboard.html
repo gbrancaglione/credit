@@ -32,7 +32,7 @@
                                   th:text="#{'status.'+${offer.getStatus()}}">
                             </span>
                             <h5 class="card-title font-weight-bold"
-                                th:text="'R$ ' + #{value.total} + ' : ' + ${#numbers.formatDecimal(offer.getTotalValue(), 2, 'POINT', 2, 'COMMA')}">
+                                th:text="#{value.total} + ' : ' + 'R$ ' + ${#numbers.formatDecimal(offer.getTotalValue(), 2, 'POINT', 2, 'COMMA')}">
                             </h5>
                             <h6 class="card-text mt-2 text-muted"
                                 th:text="#{installments.number} + ' : ' + ${offer.getNumberOfInstallments()}">
