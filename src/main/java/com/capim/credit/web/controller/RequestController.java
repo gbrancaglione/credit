@@ -48,12 +48,12 @@ public class RequestController {
                                 BindingResult result) {
 
         if (result.hasErrors()) {
-            logger.warn(" A request attempt has failed (errors): {}", result);
+            logger.warn("A request attempt has failed (errors): {}", result);
             return "request";
         }
 
         Request createdRequest = requestService.save(request);
-        logger.info(" A new request was saved (id): {}", createdRequest.getId());
+        logger.info("A new request was saved (id): {}", createdRequest.getId());
         return "request_validation";
     }
 }
